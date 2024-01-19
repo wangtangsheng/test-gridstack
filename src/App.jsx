@@ -25,7 +25,7 @@ const ControlledStack = ({ items, setItems, itemRender, onAdd }) => {
           column: 6,
           minRow: 1,
         },
-        gridContainerRef.current
+        gridContainerRef.current,
       )
         .on("added", (ev, gsItems) => {
           if (grid._ignoreCB) return;
@@ -41,9 +41,9 @@ const ControlledStack = ({ items, setItems, itemRender, onAdd }) => {
                 w,
                 h,
               },
-              addType
+              addType,
             );
-            grid.engine.nodes = grid.engine.nodes.filter(({id}) => id)
+            grid.engine.nodes = grid.engine.nodes.filter(({ id }) => id);
             return;
           }
           const addItems = [];
@@ -67,7 +67,7 @@ const ControlledStack = ({ items, setItems, itemRender, onAdd }) => {
         refs.current[a.id].current.gridstackNode || {
           ...a,
           el: refs.current[a.id].current,
-        }
+        },
     );
     grid._ignoreCB = true;
     grid.load(layout);
@@ -119,13 +119,17 @@ const Layout = ({ dataSource, onChange, itemRender, onAdd }) => {
 
 const ControlledExample = () => {
   const [items1, setItems1] = useState([
-    { id: "item-1-1", x: 0, y: 0, w: 2, h: 2 },
-    { id: "item-1-2", x: 2, y: 0, w: 2, h: 2 },
+    { id: "item-1-1", x: 0, y: 0, w: 2, h: 1 },
+    { id: "item-1-2", x: 2, y: 0, w: 2, h: 1 },
   ]);
   const [items2, setItems2] = useState([
-    { id: "item-2-1", x: 0, y: 0 },
-    { id: "item-2-2", x: 0, y: 1 },
-    { id: "item-2-3", x: 1, y: 0 },
+    { id: "item-2-1", x: 0, y: 0, w: 2, h: 1 },
+    { id: "item-2-2", x: 0, y: 1, w: 2, h: 1 },
+    { id: "item-2-3", x: 1, y: 0, w: 2, h: 1 },
+  ]);
+  const [items3, setItems3] = useState([
+    { id: "item-3-1", x: 0, y: 0, w: 2, h: 1 },
+    { id: "item-3-2", x: 0, y: 1, w: 2, h: 1 },
   ]);
   const ref = useRef(null);
   useLayoutEffect(() => {
@@ -149,56 +153,83 @@ const ControlledExample = () => {
           width: "100px",
         }}
       >
-        666
+        drag item
       </div>
-      <Layout
-        dataSource={items1}
-        onChange={(items) => setItems1(items)}
-        onAdd={(item, type) => {
-          setItems1((items) => [
-            ...items,
-            {
-              ...item,
-              id: v4(),
-            },
-          ]);
-        }}
-        itemRender={(id) => {
-          if (id === "item-1-1") {
+      <div style={{ height: "50%" }}>
+        <Layout
+          dataSource={items1}
+          onChange={(items) => setItems1(items)}
+          onAdd={(item, type) => {
+            setItems1((items) => [
+              ...items,
+              {
+                ...item,
+                id: v4(),
+              },
+            ]);
+          }}
+          itemRender={(id) => {
+            if (id === "item-1-1") {
+              return (
+                <div
+                  style={{
+                    background: "blue",
+                    height: "100%",
+                  }}
+                >
+                  <Layout
+                    dataSource={items2}
+                    onChange={(items) => setItems2(items)}
+                    onAdd={(item, type) => {
+                      setItems2((items) => [
+                        ...items,
+                        {
+                          ...item,
+                          id: v4(),
+                        },
+                      ]);
+                    }}
+                    itemRender={(id) => (
+                      <div
+                        style={{
+                          background: "red",
+                          height: "100%",
+                        }}
+                      >
+                        {id}
+                      </div>
+                    )}
+                  />
+                </div>
+              );
+            }
             return (
               <div
                 style={{
-                  background: "blue",
+                  background: "red",
                   height: "100%",
                 }}
               >
-                <Layout
-                  dataSource={items2}
-                  onChange={(items) => setItems2(items)}
-                  onAdd={(item, type) => {
-                    setItems2((items) => [
-                      ...items,
-                      {
-                        ...item,
-                        id: v4(),
-                      },
-                    ]);
-                  }}
-                  itemRender={(id) => (
-                    <div
-                      style={{
-                        background: "red",
-                        height: "100%",
-                      }}
-                    >
-                      {id}
-                    </div>
-                  )}
-                />
+                {id}
               </div>
             );
-          }
-          return (
+          }}
+        />
+      </div>
+      <div style={{ height: "50%" }}>
+        <Layout
+          dataSource={items3}
+          onChange={(items) => setItems3(items)}
+          onAdd={(item, type) => {
+            setItems3((items) => [
+              ...items,
+              {
+                ...item,
+                id: v4(),
+              },
+            ]);
+          }}
+          itemRender={(id) => (
             <div
               style={{
                 background: "red",
@@ -207,9 +238,9 @@ const ControlledExample = () => {
             >
               {id}
             </div>
-          );
-        }}
-      />
+          )}
+        />
+      </div>
     </>
   );
 };
