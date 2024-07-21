@@ -12,8 +12,8 @@ importers:
         specifier: ^2.2.6
         version: 2.2.6(react-redux@9.1.2(react@18.2.0)(redux@5.0.1))(react@18.2.0)
       gridstack:
-        specifier: ^10.1.2
-        version: 10.1.2
+        specifier: 10.2.1
+        version: 10.2.1
       react:
         specifier: ^18.0.0
         version: 18.2.0
@@ -768,8 +768,8 @@ packages:
   graphemer@1.4.0:
     resolution: {integrity: sha512-EtKwoO6kxCL9WO5xipiHTZlSzBm7WLT627TqC/uVRd0HKmq8NXyebnNYxDoBi7wt8eTWrUrKXCOVaFq9x1kgag==}
 
-  gridstack@10.1.2:
-    resolution: {integrity: sha512-Nn27XGQ68WtBC513cKQQ4t/dA2uuN/xnNUU50puXEJv6IFk5SzT0Dnsq68GpopO1n0tXUKZKm1Rw7uOUMDz1KQ==}
+  gridstack@10.2.1:
+    resolution: {integrity: sha512-UAPKnIvd9sIqPDFMtKMqj0G5GDj8MUFPcelRJq7FzQFSxSYBblKts/Gd52iEJg0EvTFP51t6ZuMWGx0pSSFBdw==}
 
   has-bigints@1.0.2:
     resolution: {integrity: sha512-tSvCKtBr9lkF0Ex0aQiP9N+OpV4zi2r/Nee5VkRDbaqv35RLYMzbwQfFSZZH0kR+Rd6302UJZ2p/bJCEoR3VoQ==}
@@ -2144,7 +2144,7 @@ snapshots:
 
   graphemer@1.4.0: {}
 
-  gridstack@10.1.2: {}
+  gridstack@10.2.1: {}
 
   has-bigints@1.0.2: {}
 
